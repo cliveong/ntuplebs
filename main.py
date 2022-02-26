@@ -1,6 +1,7 @@
 from telegram.ext import Updater
 from datetime import *
 import calendar
+import schedule
 
 updater = Updater(token='5207140517:AAGgW7Ct8NGrjL9oUpdiRNssmVqPKP1KaV4', use_context=True)
 
@@ -36,28 +37,25 @@ def add(update: Update, context: CallbackContext):
 
 ##Sets the alarm, alerts every hour at 00 minutes
 def set(update: Update, context: CallbackContext):
-    while 1:
+    def temp():
         with open("storage.json") as file:
             content = json.load(file)
 
         for item in content["reminder"]:
             index = 1
-            if time_getter()[0] == item['day'] and time_getter()[1] == item['time'][:2]:
+            if time_getter()[0] == item['day'] and time_getter()[1] == item['time'] and datetime.now().strftime('%M,%S')=='00,00':
                 context.bot.send_message(chat_id=update.effective_chat.id, text=item['link'])
             else:
                 index+=1
-        dt = datetime.now() + timedelta(hours=1)
-        dt = dt.replace(minute = 0)
-
-        while datetime.now() < dt:
-            time.sleep(1)
-        
+    while True:
+        return temp()
 
 set_handler = CommandHandler('set', set, pass_args=True)
 add_handler = CommandHandler('add', add, pass_args=True)
 
 dispatcher.add_handler(add_handler)
 dispatcher.add_handler(set_handler)
+
 
 import json
 
@@ -75,7 +73,7 @@ def json_adder(string):
 ##Gets current time
 def time_getter():
     day = calendar.day_name[date.today().weekday()]
-    hour = datetime.now().strftime("%H")
+    hour = datetime.now().strftime("%H%M")
     return (day,hour)
     
 def json_deletor(ind):
