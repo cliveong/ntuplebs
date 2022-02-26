@@ -13,7 +13,7 @@ A Telegram Bot which reminds you of your zoom lectures and tutorials for the day
 
 ## Requirements
 * ```pip install python-telegram-bot```
-* telegram api token - put the token number in 'TOKEN'
+* telegram api token - put the token number in 'TOKEN' in line 7
 
 ## Credits
 -- To Be Decided --
