@@ -4,7 +4,7 @@ from telegram import Update
 import json
 import random
 
-updater = Updater(token='5207140517:AAGgW7Ct8NGrjL9oUpdiRNssmVqPKP1KaV4', use_context=True)
+updater = Updater(token='TOKEN', use_context=True)
 
 dispatcher = updater.dispatcher
 
