@@ -18,6 +18,9 @@ A Telegram Bot which reminds you of your zoom lectures and tutorials for the day
 ## Credits
 -- To Be Decided --
 Gu Jianqiang
+
 Clive Ong
+
 Tan Jun Heng
+
 Er Song Heng
